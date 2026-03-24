@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模型状态公开看板</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-orb background-orb--pink"></div>
+    <div class="background-orb background-orb--blue"></div>
+    <div class="background-orb background-orb--cyan"></div>
+    <div class="page-shell">
+      <header class="page-header glass-panel glass-panel--hero">
+        <div>
+          <p class="eyebrow">只读状态页</p>
+          <h1 id="page-title">模型状态公开看板</h1>
+          <p class="subtitle">通过服务端只读代理获取模型状态，访客无需登录。</p>
+        </div>
+        <div class="header-actions">
+          <button id="refresh-button" class="refresh-button liquid-button" type="button">立即刷新</button>
+          <p id="refresh-hint" class="refresh-hint">等待初始化…</p>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section class="panel glass-panel">
+          <div class="section-header">
+            <div>
+              <h2>系统摘要</h2>
+              <p class="section-tip">数据库、预热状态、刷新信息与总体指标</p>
+            </div>
+            <span id="status-pill" class="status-pill status-pill--neutral">未加载</span>
+          </div>
+          <div id="summary-grid" class="summary-grid"></div>
+        </section>
+
+        <section class="panel glass-panel">
+          <div class="section-header">
+            <div>
+              <h2>只读配置</h2>
+              <p class="section-tip">上游接口返回的展示配置，仅展示不允许修改</p>
+            </div>
+            <span id="config-updated-at" class="section-meta">-</span>
+          </div>
+          <div id="config-grid" class="config-grid"></div>
+        </section>
+
+        <section class="panel glass-panel">
+          <div class="section-header">
+            <div>
+              <h2>CPA 号池</h2>
+              <p class="section-tip">服务端汇总 auth-files 后返回的只读池状态</p>
+            </div>
+            <span id="cpa-status-pill" class="status-pill status-pill--neutral">未加载</span>
+          </div>
+          <div id="cpa-grid" class="summary-grid"></div>
+        </section>
+
+        <section class="panel glass-panel">
+          <div class="section-header">
+            <div>
+              <h2>模型状态</h2>
+              <p id="model-meta" class="section-tip">-</p>
+            </div>
+          </div>
+          <div id="model-grid" class="model-grid"></div>
+        </section>
+
+        <section class="panel glass-panel">
+          <div class="section-header">
+            <div>
+              <h2>24h 请求排行</h2>
+              <p class="section-tip">按模型 24 小时请求量排序</p>
+            </div>
+          </div>
+          <div id="ranking-table" class="ranking-table"></div>
+        </section>
+
+        <section id="error-panel" class="panel error-panel hidden" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <noscript>
+      <div class="noscript-banner">此页面需要启用 JavaScript 才能展示实时状态。</div>
+    </noscript>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

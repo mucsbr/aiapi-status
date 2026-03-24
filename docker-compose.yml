@@ -1,0 +1,15 @@
+services:
+  model-status-public:
+    build: .
+    container_name: model-status-public
+    ports:
+      - "${PUBLIC_PORT:-8080}:80"
+    environment:
+      UPSTREAM_BASE: ${UPSTREAM_BASE}
+      UPSTREAM_JWT: ${UPSTREAM_JWT}
+      CPA_BASE_URL: ${CPA_BASE_URL}
+      CPA_TOKEN: ${CPA_TOKEN}
+      CPA_TARGET_TYPE: ${CPA_TARGET_TYPE:-codex}
+      CPA_MIN_CANDIDATES: ${CPA_MIN_CANDIDATES:-800}
+      REQUEST_TIMEOUT: ${REQUEST_TIMEOUT:-15}
+    restart: unless-stopped
